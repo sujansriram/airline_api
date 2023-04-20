@@ -7,6 +7,8 @@ import com.example.airline_api.repositories.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +22,8 @@ public class FlightService {
     PassengerRepository passengerRepository;
 
     public Flight addNewFlight(Flight flight){
+        flight.setDepartureDate(LocalDate.now().plusMonths(1));
+        flight.setDepartureTime(LocalTime.now());
         return flightRepository.save(flight);
     }
 
@@ -45,6 +49,11 @@ public class FlightService {
         }
         flightRepository.deleteById(id);
     }
+
+    public List<Flight> findFlightsByDestination(String destination){
+        return flightRepository.findByDestination(destination);
+    }
+
 
 
 }

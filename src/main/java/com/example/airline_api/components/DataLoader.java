@@ -11,6 +11,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -27,14 +29,17 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        Flight hawaiiFlight = new Flight("Hawaii", 10, "20/4/2023", "10:40");
-        Flight japanFlight = new Flight("Japan", 15, "21/4/2023", "12:00");
+        Flight hawaiiFlight = new Flight("Hawaii", 2);
+        Flight japanFlight = new Flight("Japan", 15);
         Passenger anna = new Passenger("Anna", "anna@bnta.com");
         Passenger zsolt = new Passenger("Zsolt", "zsolt@bnta.com");
+
         flightService.addNewFlight(hawaiiFlight);
         flightService.addNewFlight(japanFlight);
+
         passengerService.addNewPassenger(anna);
         passengerService.addNewPassenger(zsolt);
+
 
 
 
